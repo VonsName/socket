@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="../jquery-3.3.1.js"></script>
+
+    <script>
+        $(function () {
+            $('#bt1').click(function () {
+                alert('ss');
+                $.ajax({
+                    url:'http://localhost:8080/reg',
+                    dataType:'json',
+                    data:{username:$('#user').val(),password:$('#pwd').val()},
+                    success(res){
+                        alert(res);
+                        if (res.code!==0){
+                            alert('失败'+res.msg);
+                        } else {
+                            alert('成功');
+                        }
+
+                    },
+                    error(){
+                        alert('失败 通信失败')
+                    }
+                });
+            });
+        })
+    </script>
+    用户：<input type="text" name="username" id="user"><br>
+    密码：<input type="password" name="password" id="pwd"><br>
+    <input type="button" value="提交" id="bt1"><br>
+</body>
+</html>
